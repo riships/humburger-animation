@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Hamburger Button Example</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+        }
+
+        .navbar {
+            background-color: #333;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .menu-icon {
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            /* height: 50px; */
+        }
+
+        .nav-list {
+            list-style: none;
+            padding: 0;
+            display: flex;
+        }
+
+        .nav-list li {
+            padding: 10px;
+            border: 3px solid white;
+            border-radius: 5px;
+            background-color: #333;
+            color: #fff;
+            opacity: 1;
+            margin: 0 10px;
+        }
+
+        @media only screen and (min-width:601px) {
+
+
+            .nav-list li:hover {
+                padding: 10px;
+                border: 3px solid white;
+                border-radius: 5px;
+                background-color: white;
+                color: #333;
+                opacity: 1;
+                margin: 0 10px;
+                transition: padding 0.5s ease, border 0.5s ease, background-color 0.5s ease, color 0.5s ease;
+            }
+
+            .nav-list a {
+                padding: 20px 30px;
+                text-decoration: none;
+                color: #fff;
+                font-weight: bold;
+            }
+
+            .nav-list li:hover a {
+                text-decoration: none;
+                color: #333;
+                transition: color 0.5s ease;
+            }
+        }
+
+
+
+
+        @media only screen and (max-width: 600px) {
+            .nav-list {
+                display: flex;
+                flex-direction: column;
+                position: absolute;
+                top: 50px;
+                left: 0;
+                width: 100%;
+                /* padding: 10px; */
+                opacity: 0;
+                transform: translateY(-20px);
+                transition: opacity 0.5s ease, transform 0.5s ease;
+            }
+
+            .bar {
+                width: 25px;
+                height: 3px;
+                background-color: #fff;
+                margin: 3px 0;
+                transition: transform 0.3s ease, opacity 0.3s ease;
+                transform-origin: center;
+            }
+
+            .bar:first-child.rotet {
+                transform: translateY(9px) rotate(-45deg);
+            }
+
+            .bar:nth-child(2).hid {
+                opacity: 0;
+            }
+
+            .bar:last-child.rotet {
+                transform: translateY(-9px) rotate(45deg);
+            }
+
+            .nav-list.show {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+            .nav-list li {
+                margin: 0px;
+                opacity: 0;
+                transition: opacity 0.5s ease;
+            }
+
+            .nav-list.show li {
+                opacity: 1;
+                transition-delay: 0.2s;
+            }
+
+            .nav-list.show li:nth-child(2) {
+                transition-delay: 0.4s;
+            }
+
+            .nav-list.show li:nth-child(3) {
+                transition-delay: 0.6s;
+            }
+
+            .nav-list.show li {
+                padding: 10px;
+                border: 3px solid white;
+                border-radius: 5px;
+                background-color: #333;
+                opacity: 1;
+            }
+
+            .nav-list a {
+                text-decoration: none;
+                color: #fff;
+                font-weight: bold;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="navbar">
+        <div class="menu-icon" id="menu-icon">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </div>
+        <ul class="nav-list" id="nav-list">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+    </div>
+
+    <script>
+        document.getElementById('menu-icon').addEventListener('click', function () {
+            document.getElementById('nav-list').classList.toggle('show');
+
+            // Iterate through each element with the class 'bar'
+            document.querySelectorAll('.bar').forEach(function (bar) {
+                bar.classList.toggle('rotet');
+                bar.classList.toggle('hid');
+            });
+        });
+    </script>
+
+</body>
+
+</html>
